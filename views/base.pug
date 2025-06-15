@@ -6,9 +6,9 @@ block variables
 doctype html
 html(lang="en")
   head
-    // Meta tags for charset and viewport (note: 'widht' is a typo, should be 'width')
+    // Meta tags for charset and viewport
     meta(charset="UTF-8")
-    meta(name="viewport" content="widht=device-widht, initial-scale=1.0")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
 
     // Sets the base URL for relative links
     base(href="/")
@@ -27,15 +27,15 @@ html(lang="en")
     link(rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff3a00")
 
     // Social sharing meta tags (Open Graph and Twitter) are commented out, can be enabled if needed
-    //- meta(property="og:type" content="website")
-    //- meta(property="og:title" content=meta.data.title)
-    //- meta(property="og:description" content=meta.data.description)
-    //- meta(property="og:image" content=meta.data.image ? meta.data.image.url : '')
+    meta(property="og:type" content="website")
+    meta(property="og:title" content=meta.data.title)
+    meta(property="og:description" content=meta.data.description)
+    meta(property="og:image" content=meta.data.image ? meta.data.image.url : 'https://images.prismic.io/floemacourse/aEs_mLNJEFaPX7DG_e.jpg?auto=format,compress')
 
-    //- meta(name="twitter:card" content="summary_large_image")
-    //- meta(name="twitter:title" content=meta.data.title)
-    //- meta(name="twitter:description" content=meta.data.description)
-    //- meta(name="twitter:image" content=meta.data.image ? meta.data.image.url : '')
+    meta(name="twitter:card" content="summary_large_image")
+    meta(name="twitter:title" content=meta.data.title)
+    meta(name="twitter:description" content=meta.data.description)
+    meta(name="twitter:image" content=meta.data.image ? meta.data.image.url : 'https://images.prismic.io/floemacourse/aEs_mLNJEFaPX7DG_e.jpg?auto=format,compress')
 
     // Links to the main CSS stylesheet
     link(href="main.css" rel="stylesheet")
