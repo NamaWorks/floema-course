@@ -7,6 +7,8 @@ const port = 3000
 
 const Prismic = require('@prismicio/client')
 const PrismicDOM = require('prismic-dom')
+const { asyncWrapProviders } = require('async_hooks')
+const { pseudoRandomBytes } = require('crypto')
 
 // connect to API
 const initApi = (req) => {
@@ -53,6 +55,7 @@ app.get('/', (req, res) => {
 // Uses .find() to ensure the correct document is assigned to each variable, regardless of order returned by the API.
 // If a document is not found, provides a fallback object with an empty data property to prevent template errors.
 // Passes both 'about' and 'meta' to the Pug template for rendering.
+
 app.get('/about/', async (req, res) => {
   initApi(req)
     .then((api) => {
@@ -74,11 +77,49 @@ app.get('/about/', async (req, res) => {
 })
 
 // app.get('/about', (req, res) => {
+//   initApi(req).then(async api => {
+//     const about = await api.getSingle('about')
+//     const meta = await api.getSingle('meta')
+
+//     console.log(meta)
+
+//     res.render('pages/about', {
+//       about,
+//       meta
+//     })
+//   }
+//   )
+// })
+
+// app.get('/about', (req, res) => {
 //   res.render('pages/about')
 // })
 
 app.get('/collections', (req, res) => {
   res.render('pages/collections')
+})
+
+app.get('/detail/:uid', async (req, res) => {
+  let apiT
+
+  initApi(req)
+    .then((api) => {
+      apiT = api
+      return api.query(
+        Prismic.predicates.any('document.type', ['detail', 'meta'])
+      )
+    })
+    .then(async (response) => {
+      // response is the response object. Render your views here.
+      const { results } = response
+      // Find the correct documents by type
+      const meta = results.find(doc => doc.type === 'meta') || { data: {} }
+      const product = await apiT.getByUID('product', req.params.uid)
+      res.render('pages/detail', {
+        meta,
+        product
+      })
+    })
 })
 
 app.get('/detail/:uid', (req, res) => {
