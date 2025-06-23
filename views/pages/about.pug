@@ -1,6 +1,8 @@
+//- Extends the base layout template
 extends ../base.pug
 
 block variables 
+  //- Sets a template variable for this page
   - var template = 'about'
 
 block content 
@@ -8,40 +10,53 @@ block content
     .about__wrapper
       section.about__gallery
         .about__gallery__wrapper 
+          //- Loops through each media item in the about.data.gallery array
           each media in about.data.gallery
             figure.about__gallery__media 
+              //- Renders an image for each gallery media item
               img.about__gallery__media__image(alt=media.image.alt src=media.image.url)
 
+      //- Loops through each section in about.data.body
       each section in about.data.body
+        //- If the section is a title slice, render the title
         if section.slice_type == 'title'
           h2.about__title=section.primary.text 
 
 
+        //- If the section is a content slice, render the content block
         if section.slice_type == 'content'
           section.about__content
-            .about__conten__wrapper 
+            .about__content__wrapper 
+              //- Render the label for the content section
               p.about__content__label=section.primary.label
 
+              //- Render the description as HTML using PrismicDOM.RichText
               .about__content__description!=PrismicDOM.RichText.asHtml(section.primary.description)
 
+              //- Render the image for the content section
               figure.about__content__media
                 img.about__content__media__image(alt=section.primary.image.alt src=section.primary.image.url)
 
+        //- If the section is a highlight slice, render the highlight block
         if section.slice_type == 'highlight'
           section.about__highlight
             .about__hihglight__wrapper 
+              //- If a label exists, render it
               if section.primary.label 
                 p.about__hihglight__label=section.primary.label
 
-              h3.about__highlight__title=section.primary.title
+              //- Render the highlight title
+              h3.about__highlight__title=section.primary.title[0].text
 
+              //- Loop through each media item in the highlight section
               each media in section.items
                 figure.about__hihghlight__media 
+                  //- Render the image for each highlight media item
                   img.about__hihghlight__media__image(alt=media.image.alt src=media.image.url)
 
           if section.slice_type == 'gallery'
             section.about__images 
               .about__gallery__wrapper
-                each media in about.data.gallery 
+                each media in about[0].data.gallery 
                   figure.about__gallery__media 
                     img.about__gallery__media__image(alt=media.image.alt src=media.image.url)

@@ -127,5 +127,10 @@ module.exports = {
   optimization: {
     minimize: true,
     minimizer: [new TerserPlugin()]
+  },
+
+  output: {
+    path: path.resolve(__dirname, 'public'),
+    filename: 'main.js'
   }
 }

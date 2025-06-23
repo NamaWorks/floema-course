@@ -1,53 +1,53 @@
-// Main layout template for the website using Pug
-// Declares a block for variables at the top (for passing data into the template)
+//- Main layout template for the website using Pug
+//- Declares a block for variables at the top (for passing data into the template)
 block variables
 
-// Sets up the HTML document structure
+//- Sets up the HTML document structure
 doctype html
 html(lang="en")
   head
-    // Meta tags for charset and viewport
+    //- Meta tags for charset and viewport
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
 
-    // Sets the base URL for relative links, we should include this to avoid re renderings
+    //- Sets the base URL for relative links, we should include this to avoid re renderings
     base(href="/")
 
-    // Sets the page title
+    //- Sets the page title
     title Floema
 
-    // SEO and description meta tag
+    //- SEO and description meta tag
     meta(name="description" content="Floema beautiful jewlery.")
     
-    // Favicon and manifest links for browser and device icons
+    //- Favicon and manifest links for browser and device icons
     link(rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png")
     link(rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png")
     link(rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png")
-    link(rel="manifest" href="/site.webmanifest")
+    //- link(rel="manifest" href="/site.webmanifest")
     link(rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff3a00")
 
-    // Social sharing meta tags (Open Graph and Twitter) are commented out, can be enabled if needed
+    //- Social sharing meta tags (Open Graph and Twitter) are commented out, can be enabled if needed
     meta(property="og:type" content="website")
     meta(property="og:title" content=meta.data.title)
     meta(property="og:description" content=meta.data.description)
-    meta(property="og:image" content=meta.data.image ? meta.data.image.url : 'https://images.prismic.io/floemacourse/aEs_mLNJEFaPX7DG_e.jpg?auto=format,compress')
+    meta(property="og:image" content=meta.data.image ? meta.data.image.url : 'https://-images.prismic.io/floemacourse/aEs_mLNJEFaPX7DG_e.jpg?auto=format,compress')
 
     meta(name="twitter:card" content="summary_large_image")
     meta(name="twitter:title" content=meta.data.title)
     meta(name="twitter:description" content=meta.data.description)
-    meta(name="twitter:image" content=meta.data.image ? meta.data.image.url : 'https://images.prismic.io/floemacourse/aEs_mLNJEFaPX7DG_e.jpg?auto=format,compress')
+    meta(name="twitter:image" content=meta.data.image ? meta.data.image.url : 'https://-images.prismic.io/floemacourse/aEs_mLNJEFaPX7DG_e.jpg?auto=format,compress')
 
-    // Links to the main CSS stylesheet
+    //- Links to the main CSS stylesheet
     link(href="main.css" rel="stylesheet")
   
   body
-    // Includes reusable partials: preloader and navigation
+    //- Includes reusable partials: preloader and navigation
     include ./partials/preloader
     include ./partials/navigation
 
-    // .content div is where page-specific content will be injected
-    // The data-template attribute is set to a template variable, likely for client-side JS
+    //- .content div is where page-specific content will be injected
+    //- The data-template attribute is set to a template variable, likely for client-side JS
     .content#content(data-template=template)
-      // Pug’s block content for dynamic page content
+      //- Pug’s block content for dynamic page content
       block content
-// End of base.pug
+//- End of base.pug
