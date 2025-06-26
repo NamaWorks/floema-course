@@ -1,25 +1,32 @@
-@import './utils/variables.scss';
-@import './utils/functions.scss';
-@import './utils/mixins.scss';
-@import './utils/vendors.scss';
-@import './utils/responsive.scss';
+@import './base/reset';
 
-@import './shared/descriptions.scss';
-@import './shared/titles.scss';
+@import './utils/variables';
+@import './utils/functions';
+@import './utils/mixins';
+@import './utils/vendors';
+@import './utils/responsive';
 
-@import './base/reset.scss';
-@import './base/fonts.scss';
-@import './base/base.scss';
+@import './shared/descriptions';
+@import './shared/links';
+@import './shared/pages';
+@import './shared/titles';
+@import './shared/vertical-titles';
 
-@import './components/preloader.scss';
+@import './base/fonts';
+@import './base/base';
 
-@import './pages/about/about.scss';
-@import './pages/about/content.scss';
-@import './pages/about/gallery.scss';
-@import './pages/about/highlight.scss';
+@import './components/preloader';
+@import './components/transition';
 
-@import './pages/collection/collection.scss';
+@import './layout/navigation';
 
-@import './pages/detail/detail.scss';
+@import './pages/about/about';
+@import './pages/about/content';
+@import './pages/about/gallery';
+@import './pages/about/highlight';
 
-@import './pages/home/home.scss';
+@import './pages/collection/collection';
+
+@import './pages/detail/detail';
+
+@import './pages/home/home';

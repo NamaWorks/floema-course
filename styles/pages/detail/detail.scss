@@ -1,17 +1,23 @@
 .detail {
-
+  @extend %cover;
+  @extend %center;
 }
 
 .detail__wrapper {
-
+  align-items: center;
+  display: flex;
 }
 
 .detail__media {
-
+  position: relative;
+  height: 78.2rem;
+  width: 55.4rem;
 }
 
 .detail__media__image {
+  @extend %cover;
 
+  object-fit: cover;
 }
 
 .detail__information  {
@@ -19,23 +25,31 @@
 }
 
 .detail__information__collection {
+  @extend %description-12;
 
+  text-transform: uppercase;
+  margin-bottom: 4rem;
 }
 
 .detail__information__title  {
+  @extend %title-120;
 
+  text-align: center;
 }
 
 .detail__information__content  {
-
+  padding-left: 18rem;
 }
 
 .detail__information__highlights {
+  @extend %description-18;
 
+  margin-top: 5rem;
 }
 
-.detail__information__highlights {
-
+.detail__information__highlight {
+  display: flex;
+  align-items: center;
 }
 
 .detail__information__hihglights__icon {
@@ -47,15 +61,20 @@
 }
 
 .detail__information__list  {
-
+  margin-top: 4rem;
 }
 
 .detail__information__item  {
+  align-items: center;
+  display: flex;
 
+  &:not(:first-child) {
+    margin-top: 4rem;
+  }
 }
 
 .detail__information__item__title {
-
+  @extend %description-12;
 }
 
 .detail__information__item__description {
@@ -63,5 +82,6 @@
 }
 
 .detail__information__link {
-
+  @extend %title-30;
+margin-top: 3rem
 }

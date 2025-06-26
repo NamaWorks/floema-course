@@ -192,6 +192,7 @@ app.get('/detail/:uid', async (req, res) => {
       const product = await apiT.getByUID('product', req.params.uid, {
         fetchLinks: 'collection.title' // we use this for fetching more info about the link
       })
+
       res.render('pages/detail', {
         meta,
         product,
