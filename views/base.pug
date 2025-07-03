@@ -50,4 +50,7 @@ html(lang="en")
     .content#content(data-template=template)
       //- Pug’s block content for dynamic page content
       block content
+
+    script(src='main.js' defer) 
+    //- we use the main.js as that's the file we get from the build (we can check it in the public folder)
 //- End of base.pug

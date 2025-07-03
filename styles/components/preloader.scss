@@ -1,19 +1,26 @@
 .preloader {
-  display: none;
   @extend %center;
   @extend %cover;
 
   background: $color-contessa;
   color: $color-quarter-spanish-white;
   text-align: center;
-  // z-index: z('preloader');
+  z-index: z('preloader');
+  // display: none;
 }
 
 .preloader__text {
   @extend %title-53;
 
+  // font-size: 0;
+
   max-width: 67rem;
-  opacity: 0;
+  // opacity: 0;
+
+  span {
+    display: inline-block;
+    overflow: hidden
+  }
 
   span span {
     @extend %title-53;

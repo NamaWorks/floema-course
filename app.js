@@ -102,6 +102,8 @@ app.get('/', (req, res) => {
       const { results: collection } = await apiT.query(Prismic.Predicates.at('document.type', 'collection'), { // this is the way if we use Prismic.predicates.any('document.type', [])
         fetchLinks: 'product.image' // what we do here is fetching from the type product the image
       })
+
+      // console.log(home.data)
       res.render('pages/home', {
         home,
         meta,
@@ -163,6 +165,8 @@ app.get('/collection/', async (req, res) => {
       const { results: collection } = await apiT.query(Prismic.Predicates.at('document.type', 'collection'), {
         fetchLinks: 'product.image' // what we do here is fetching from the type product the image
       })
+
+      console.log(collection[0])
 
       res.render('pages/collection', {
         meta,
