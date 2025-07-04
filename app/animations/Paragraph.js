@@ -2,24 +2,17 @@ import gsap from 'gsap'
 import Animation from 'classes/Animation'
 import { split, calculate } from 'utils/text'
 
-export default class Title extends Animation {
+export default class Paragraph extends Animation {
   constructor ({ element, elements }) {
     super({
       element,
       elements
     })
 
-    split({
-      element: this.element,
-      append: true
+    this.elementLinesSpans = split({
+      append: true,
+      element: this.element
     })
-
-    split({
-      element: this.element,
-      append: true
-    })
-
-    this.elementLinesSpans = this.element.querySelectorAll('span span')
   }
 
   animateIn () {
@@ -32,9 +25,10 @@ export default class Title extends Animation {
     })
 
     this.timelineIn.fromTo(this.elementsLines, {
-      // autoAlpha: 0
+      autoAlpha: 0,
       y: '100%'
     }, {
+      autoAlpha: 1,
       delay: 0.25,
       duration: 0.5,
       // autoAlpha: 1,

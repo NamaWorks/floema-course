@@ -28,10 +28,10 @@ block content
           section.about__content(class=`${section.primary.type === 'Left' ? 'about__content--left' : 'about__content--right'}`)
             .about__content__wrapper 
               //- Render the label for the content section
-              p.about__content__label=section.primary.label
+              p.about__content__label(data-animation="label")=section.primary.label
 
               //- Render the description as HTML using PrismicDOM.RichText
-              .about__content__description!=PrismicDOM.RichText.asHtml(section.primary.description)
+              .about__content__description!=PrismicDOM.RichText.asHtml(section.primary.description).replace(/<p>/g, '<p data-animation="paragraph">')
 
               //- Render the image for the content section
               figure.about__content__media
@@ -43,10 +43,10 @@ block content
             .about__hihglight__wrapper 
               //- If a label exists, render it
               if section.primary.label 
-                p.about__hihglight__label=section.primary.label
+                p.about__hihglight__label(data-animation="label")=section.primary.label
 
               //- Render the highlight title
-              h3.about__highlight__title(data-animation="title")=section.primary.title[0].text
+              h3.about__highlight__title(data-animation="highlight")=section.primary.title[0].text
 
               //- Loop through each media item in the highlight section
               each media in section.items

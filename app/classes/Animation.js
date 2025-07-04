@@ -31,6 +31,8 @@ export default class Animation extends Component {
   animateIn () {}
 
   animateOut () {}
+
+  onResize () {}
 }
 
 // intersection observer is a JS API that lets you know when an object is in viewport

@@ -5,6 +5,9 @@ import Prefix from 'prefix'
 import each from 'lodash/each'
 import map from 'lodash/map'
 
+import Label from 'animations/Label'
+import Paragraph from 'animations/Paragraph'
+import Highlight from 'animations/Highlight'
 import Title from 'animations/Title'
 
 export default class Page {
@@ -16,7 +19,10 @@ export default class Page {
     this.selector = element
     this.selectorChildren = {
       ...elements,
-      animationsTitles: '[data-animation="title"]'
+      animationsTitles: '[data-animation="title"]',
+      animationsParagraphs: '[data-animation="paragraph"]',
+      animationsHighlights: '[data-animation="highlight"]',
+      animationsLabels: '[data-animation="label"]'
     }
 
     this.id = id
@@ -51,7 +57,8 @@ export default class Page {
   }
 
   createAnimations () {
-    console.log(this.elements.animationsTitles)
+    this.animations = []
+
     this.animationsTitles = map(this.elements.animationsTitles, element => {
       const title = new Title({ element })
       // Automatically trigger animation if a method exists
@@ -62,7 +69,47 @@ export default class Page {
       }
       return title
     })
-    // console.log(this.animationsTitles)
+
+    this.animations.push(...this.animationsTitles)
+
+    this.animationsHighlights = map(this.elements.animationsHighlights, element => {
+      const title = new Highlight({ element })
+      // Automatically trigger animation if a method exists
+      if (typeof title.animateIn === 'function') {
+        title.animateIn()
+      } else if (typeof title.show === 'function') {
+        title.show()
+      }
+      return title
+    })
+
+    this.animations.push(...this.animationsHighlights)
+
+    this.animationsParagraphs = map(this.elements.animationsParagraphs, element => {
+      const title = new Paragraph({ element })
+      // Automatically trigger animation if a method exists
+      if (typeof title.animateIn === 'function') {
+        title.animateIn()
+      } else if (typeof title.show === 'function') {
+        title.show()
+      }
+      return title
+    })
+
+    this.animations.push(...this.animationsParagraphs)
+
+    this.animationsLabels = map(this.elements.animationsLabels, element => {
+      const title = new Label({ element })
+      // Automatically trigger animation if a method exists
+      if (typeof title.animateIn === 'function') {
+        title.animateIn()
+      } else if (typeof title.show === 'function') {
+        title.show()
+      }
+      return title
+    })
+
+    this.animations.push(...this.animationsLabels)
   }
 
   show () {
@@ -125,6 +172,8 @@ export default class Page {
     }
 
     this.scroll.limit = this.elements.wrapper[0].clientHeight - window.innerHeight
+
+    each(this.animations, animation => animation.onResize())
   }
 
   update () {
