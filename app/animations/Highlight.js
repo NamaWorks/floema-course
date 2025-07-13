@@ -1,6 +1,5 @@
 import gsap from 'gsap'
 import Animation from 'classes/Animation'
-import { split } from 'utils/text'
 
 export default class Highlight extends Animation {
   constructor ({ element, elements }) {
@@ -12,7 +11,7 @@ export default class Highlight extends Animation {
 
   animateIn () {
     if (this.timelineIn) {
-      this.timelineIn.kill();
+      this.timelineIn.kill()
     }
     this.timelineIn = gsap.timeline({
       delay: 0.5

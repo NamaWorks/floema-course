@@ -64,7 +64,7 @@ export default class Preloader extends Component {
       this.animateOut.to(this.elements.titleSpans, {
         // autoAlpha: 0,
         duration: 1.5,
-        y: 50,
+        y: 100,
         stagger: 0.02,
         ease: 'expo.out'
       })
@@ -72,7 +72,7 @@ export default class Preloader extends Component {
       this.animateOut.to(this.elements.numberText[0], {
         // autoAlpha: 0,
         duration: 1.5,
-        y: 50,
+        y: 100,
         stagger: 0.02,
         ease: 'expo.out'
       }, '-=1.4')

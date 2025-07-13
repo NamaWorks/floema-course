@@ -166,7 +166,7 @@ app.get('/collection/', async (req, res) => {
         fetchLinks: 'product.image' // what we do here is fetching from the type product the image
       })
 
-      console.log(collection[0])
+      // console.log(collection[0])
 
       res.render('pages/collection', {
         meta,

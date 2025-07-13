@@ -4,14 +4,22 @@ import About from 'pages/About'
 import Collection from 'pages/Collection'
 import Detail from 'pages/Detail'
 import Home from 'pages/Home'
+import Navigation from 'components/navigation'
 
 class App {
   constructor () {
     this.createPreloader()
+    this.createNavigation()
     this.createContent()
     this.createPages()
     this.addEventListeners()
     this.addLinkListeners()
+  }
+
+  createNavigation () {
+    this.navigation = new Navigation({
+      template: this.template
+    })
   }
 
   createPreloader () {
@@ -36,10 +44,11 @@ class App {
     this.page = this.pages[this.template]
     this.page.create()
     // this.page.show()
+    this.navigation.onChange(this.template)
   }
 
   async onPreloaded () {
-    console.log('Preloaded!')
+    // console.log('Preloaded!')
     this.preloader.destroy()
     this.onResize()
     this.page.show()
@@ -61,6 +70,7 @@ class App {
 
       const divContent = div.querySelector('.content')
       this.template = divContent.getAttribute('data-template')
+      this.navigation.onChange(this.template)
 
       this.content.setAttribute('data-template', this.template)
       this.content.innerHTML = divContent.innerHTML

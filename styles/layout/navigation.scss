@@ -8,6 +8,8 @@
 }
 
 .navigation__link {
+  @extend %Link-hidden;
+
   font-size: 0;
   height: 2rem;
   left: 4rem;
@@ -16,6 +18,10 @@
   top: 4rem;
   transition: opacity 0.4s ease;
   width: 12.8rem;
+
+  // &:after {
+  //   bottom: 0.2rem;
+  // }
 
   &:hover {
     opacity: 0.5;
@@ -49,4 +55,5 @@
   @extend %title-24;
 
   display: block;
+  line-height: 1;
 }

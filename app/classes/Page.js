@@ -1,4 +1,3 @@
-import gsap from 'gsap'
 import normalizeWheel from 'normalize-wheel'
 import Prefix from 'prefix'
 
@@ -9,6 +8,11 @@ import Label from 'animations/Label'
 import Paragraph from 'animations/Paragraph'
 import Highlight from 'animations/Highlight'
 import Title from 'animations/Title'
+
+import Preloader from 'classes/AsyncLoad'
+import gsap from 'gsap'
+
+import { ColorsManager } from 'classes/Colors'
 
 export default class Page {
   constructor ({
@@ -22,7 +26,8 @@ export default class Page {
       animationsTitles: '[data-animation="title"]',
       animationsParagraphs: '[data-animation="paragraph"]',
       animationsHighlights: '[data-animation="highlight"]',
-      animationsLabels: '[data-animation="label"]'
+      animationsLabels: '[data-animation="label"]',
+      preloaders: '[data-src]'
     }
 
     this.id = id
@@ -54,6 +59,7 @@ export default class Page {
     })
 
     this.createAnimations()
+    this.createPreloader()
   }
 
   createAnimations () {
@@ -112,8 +118,19 @@ export default class Page {
     this.animations.push(...this.animationsLabels)
   }
 
+  createPreloader () {
+    this.preloaders = map(this.elements.preloaders, element => {
+      return new Preloader({ element })
+    })
+  }
+
   show () {
     return new Promise(resolve => {
+      ColorsManager.change({
+        backgroundColor: this.element.getAttribute('data-background'),
+        color: this.element.getAttribute('data-color')
+
+      })
       this.animationIn = gsap.timeline()
 
       // gsap.fromTo(this.element, {
@@ -142,7 +159,8 @@ export default class Page {
 
   hide () {
     return new Promise(resolve => {
-      this.removeEventListeners()
+      // this.removeEventListeners()
+      this.destroy()
 
       // this.animationIn.gsap.timeline()
       // this.gsap.timeline()
@@ -192,5 +210,9 @@ export default class Page {
 
   removeEventListeners () {
     window.removeEventListener('mousewheel', this.onMouseWheelEvent)
+  }
+
+  destroy () {
+  this.removeEventListeners()
   }
 }
